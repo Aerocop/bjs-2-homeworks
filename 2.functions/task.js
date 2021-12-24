@@ -1,74 +1,71 @@
 // Задание 1
 function getArrayParams(arr) {
-  let min, max, sum, avg;
-  min = Infinity;
-  max = -Infinity;
-  sum = 0;
+  let avg;
+  let min = Infinity;
+  let max = -Infinity;
+  let sum = 0;
 
-  function minValue(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      if (min > arr[i]) min = arr[i];
-    }
+  for (let e = 0; e < arr.length; e++) {
+    if (arr[e] > max) {
+      max = arr[e];
+    } if (arr[e] < min) {
+      min = arr[e];
+    } if (e < arr.length) {
+      sum += arr[e]
+    } 
   }
+  
+  let average = sum / arr.length;
+  avg = Number(average.toFixed(2));
 
-  function maxValue(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      if (max < arr[i]) max = arr[i];
-    }
-  }
-
-  function sumValue(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      sum += arr[i];
-    }
-    avg = +(sum / arr.length).toFixed(2);
-  }
-
-  minValue(arr);
-  sumValue(arr);
-  maxValue(arr);
-
-  return {
-    min: min,
-    max: max,
-    avg: avg
-  };
+  return { min: min, max: max, avg: avg };
 }
 
+console.log(getArrayParams([-99, 99, 10])); 
+
 // Задание 2
+
+
 function worker(arr) {
   let sum = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    sum += +arr[i];
+    sum += arr[i];
   }
 
   return sum;
 }
 
+worker();
+
 function makeWork(arrOfArr, func) {
-  let max = 0;
-
+  let max = -Infinity;
+  
   for (let i = 0; i < arrOfArr.length; i++) {
-    let a = func(arrOfArr[i]);
-    if (max < a) max = a;
+    console.log(func(arrOfArr[i]));
+    
+    if (func(arrOfArr[i]) > max) {
+      max = func(arrOfArr[i]);
+    }
   }
-
   return max;
 }
 
+makeWork();
+
 // Задание 3
 function worker2(arr) {
-  let min = arr[1];
-  let max = arr[1];
-  let sum = 0;
+  let max = -Infinity;
+  let min = Infinity;
 
-  for (let i = 0; i < arr.length; i++) {
-    if (min > arr[i]) min = arr[i];
-    if (max < arr[i]) max = arr[i];
+  for (let j = 0; j < arr.length; j++) {
+    if (arr[j] < min) {
+      min = arr[j];
+    }
+    if (arr[j] > max) {
+      max = arr[j];
+    }
   }
-
-  sum = Math.abs(min - max);
-
-  return sum;
+  return Math.abs(max - min);
 }
+worker2();
